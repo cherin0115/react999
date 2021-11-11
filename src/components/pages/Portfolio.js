@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
@@ -5,10 +6,8 @@ import Contents from '../layouts/Contents';
 import WrapTitle from '../layouts/WrapTitle';
 import ContInfo from '../layouts/ContInfo';
 import PortInfo from '../info/PortInfo';
-import Loading from '../layouts/Loading';
-
 import axios from "axios";
-
+import Loading from '../layouts/Loading';
 class Portfolio extends React.Component {
     state = {
         isLoading: true,    //변수에 저장
@@ -20,7 +19,7 @@ class Portfolio extends React.Component {
                 data: {ports},
             },
         } = await axios.get("https://webstoryboy.github.io/react5001/src/assets/json/portfolio.json");
-        // console.log(ports) 데이터불러오기; 
+        // console.log(ports);
         // console.log(ports.data.data.ports);
         this.setState({ ports, isLoading: false})
     }
@@ -30,13 +29,15 @@ class Portfolio extends React.Component {
             this.getPorts();
         }, 3000);
     }   //사이트가 다 로딩되면 3초후 실행
-
     render(){
         const { isLoading, ports } = this.state;
         return (
             <div>
-            {isLoading ? (
+                {isLoading ? (
                     <Loading />
+                //    <div className="loading">
+                //        <span>로딩중...</span>
+                //    </div> 
                 ) : (
                     <div>
                         <Header />
